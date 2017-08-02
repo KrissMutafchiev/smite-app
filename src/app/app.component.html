@@ -1,3 +1,19 @@
 <ul>
-  <li *ngFor="let article of articles | async ">{{article.title}}</li>
+  <li *ngFor="let article of articles | async ">
+   <h2>{{article.title}}</h2>
+    <div class="col-md-12">
+      <img src="{{article.imageUrl}}" alt="article-img" width="300" height="250">
+      <div class="row">
+        <p>{{article.description}}</p>
+        <div>
+          <span>{{article.author}}</span>
+          <span>{{article.date}}</span>
+          <span>{{article.views}}</span>
+          <span>{{article.rating.like}}</span>
+          <span>{{article.rating.dislike}}</span>
+        </div>
+      </div>
+    </div>
+
+  </li>
 </ul>

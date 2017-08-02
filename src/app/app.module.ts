@@ -10,11 +10,13 @@ import { firebaseConfig } from './../environments/firebase.config';
 
 import { AppComponent } from './app.component';
 import { UserAuthentication } from './components/user-authentication.component';
+import { BackgroundScenComponent } from './background-scen/background-scen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserAuthentication
+    UserAuthentication,
+    BackgroundScenComponent,
   ],
   imports: [
     BrowserModule,
