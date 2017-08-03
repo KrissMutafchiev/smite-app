@@ -10,16 +10,22 @@ import { UserAuthentication } from './components/user-authentication.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private counter = 1;
 
-  articles:FirebaseListObservable<any[]>;
+  articles: FirebaseListObservable<any[]>;
 
-  constructor( private db:AngularFireDatabase ){
-    this.articles = db.list('/articles',{
-      query:{
-        orderByChild:'article-1',
+  constructor( private db: AngularFireDatabase ) {
+    this.articles = db.list('/articles', {
+      query: {
+        orderByChild: 'article-1',
       }
     });
 
+  }
+
+  public counterUp() {
+    console.log(this.counter);
+    return this.counter += this.counter;
   }
 
 }
