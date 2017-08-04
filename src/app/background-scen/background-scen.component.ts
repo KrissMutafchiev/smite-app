@@ -30,6 +30,10 @@ export class BackgroundScenComponent implements AfterViewInit {
   private scene: THREE.Scene;
 
 
+  private stars = [];
+
+
+
 
   /* CUBE PROPERTIES */
   @Input()
@@ -48,7 +52,7 @@ export class BackgroundScenComponent implements AfterViewInit {
 
   /* STAGE PROPERTIES */
   @Input()
-  public cameraZ: number = 400;
+  public cameraZ: number = -400;
 
   @Input()
   public fieldOfView: number = 70;
@@ -68,13 +72,35 @@ export class BackgroundScenComponent implements AfterViewInit {
 
   /* STAGING, ANIMATION, AND RENDERING */
 
+
+
   /**
    * Animate the cube
    */
   private animateCube() {
-    this.cube.rotation.x += this.rotationSpeedX;
-    this.cube.rotation.y += this.rotationSpeedY;
+/*    this.cube.rotation.x += this.rotationSpeedX;
+    this.cube.rotation.y += this.rotationSpeedY;*/
+    for( let i = 0; i < this.stars.length; i++){
+
+    }
+    this.camera.rotation.z += 0.001;
   }
+
+  private createStars(){
+    for (let i = 0; i < 6000 ; i++) {
+      let rx = Math.random() * 2000 - 1000;
+      let ry = Math.random() * 1000 - 500;
+      let rz = Math.random() * 10000 - 5000;
+      this.stars[i] = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), new THREE.MeshNormalMaterial());
+
+      this.stars[i].position.x = rx;
+      this.stars[i].position.y = ry;
+      this.stars[i].position.z = rz;
+      this.scene.add(this.stars[i]);
+    }
+  }
+
+
 
   /**
    * Create the cube
@@ -100,6 +126,7 @@ export class BackgroundScenComponent implements AfterViewInit {
       this.farClippingPane
     );
     this.camera.position.z = this.cameraZ;
+
   }
 
   private getAspectRatio() {
@@ -114,14 +141,17 @@ export class BackgroundScenComponent implements AfterViewInit {
     // Use canvas element in template
     this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas });
     this.renderer.setPixelRatio(devicePixelRatio);
-    this.renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     let component: BackgroundScenComponent = this;
+
     (function render() {
       requestAnimationFrame(render);
       component.animateCube();
       component.renderer.render(component.scene, component.camera);
     }());
+
+
   }
 
 
@@ -149,7 +179,7 @@ export class BackgroundScenComponent implements AfterViewInit {
    */
   public ngAfterViewInit() {
     this.createScene();
-    this.createCube();
+    this.createStars();
     this.startRenderingLoop();
   }
 }
