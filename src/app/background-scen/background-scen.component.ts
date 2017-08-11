@@ -87,7 +87,7 @@ export class BackgroundScenComponent implements AfterViewInit {
   }
 
   private createStars(){
-    for (let i = 0; i < 6000 ; i++) {
+    for (let i = 0; i < 500 ; i++) {
       let rx = Math.random() * 2000 - 1000;
       let ry = Math.random() * 1000 - 500;
       let rz = Math.random() * 10000 - 5000;

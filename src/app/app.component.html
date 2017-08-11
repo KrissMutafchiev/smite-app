@@ -1,20 +1,11 @@
-<!--<ul>
-  <li *ngFor="let article of articles | async ">
-   <h2>{{article.title}}</h2>
-    <div class="col-md-12">
-      <img src="{{article.imageUrl}}" alt="article-img" width="300" height="250">
-      <div class="row">
-        <p>{{article.description}}</p>
-        <div>
-          <span>{{article.author}}</span>
-          <span>{{article.date}}</span>
-          <span>{{article.views}}</span>
-          <span>{{article.rating.like}}</span>
-          <span>{{article.rating.dislike}}</span>
-        </div>
-      </div>
-    </div>
-    <button (click)="counterUp()">My Button</button>
-  </li>
-</ul>-->
-<app-background-scen></app-background-scen>
+<div class="container-fluid">
+  <app-background-scen></app-background-scen>
+  <div class="col-md-6">
+    <app-article-list></app-article-list>
+  </div>
+  <div class="col-md-6">
+    <app-article-detail></app-article-detail>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
