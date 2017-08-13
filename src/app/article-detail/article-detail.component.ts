@@ -13,21 +13,27 @@ import {Observable} from "rxjs/Observable";
   templateUrl: './article-detail.component.html',
   styleUrls: ['./article-detail.component.css']
 })
-export class ArticleDetailComponent implements AfterViewInit  {
+export class ArticleDetailComponent implements OnInit  {
 
   private  articleID: any;
-  public detailArticle: any ;
+  public   detailArticle: any ;
+  public errorMessage :string = 'Error !!';
 
 
   constructor( private route: ActivatedRoute , private _articlesService: ArticlesService ) {
   }
 
-  ngAfterViewInit () {
+  ngOnInit () {
      this.route.params.subscribe( (params) => {
       this.articleID = params['id'];
-      this._articlesService.getArticle(this.articleID).subscribe( article => this.detailArticle = article );
-    } );
-     console.log(this.detailArticle);
+       this.route.params
+         .do(params => this.articleID = params['id'])
+         .switchMap(
+           params => this._articlesService.getArticle(this.articleID)
+         )
+         .subscribe( article => this.detailArticle = article );     }
+    );
+
   }
 
 }

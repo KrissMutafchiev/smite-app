@@ -1,22 +1,27 @@
 <div class="row">
   <ul class="list-article list-group ">
     <li *ngFor="let item of article " class="list-group-item  xxx">
-      <a class="" [routerLink]="['articles', item.id]"><h4 class="text-center">{{item.title}}</h4></a>
-      <div class="well">
-        <div class="col-md-6">
-          <img [src]="item.imageUrl" alt="article-img" width="100%" height="200">
-          <p class="well-sm">
-            Author:
-            <span class="badge">{{item.author}}</span>
-            <span class="badge">{{item.date}}</span>
-          </p>
+      <div class="row">
+        <div class="col-md-5">
+          <a class="" [routerLink]="['articles', item.id]">
+            <img class="" [src]="item.imageUrl" alt="article-img" width="100%" height="100">
+          </a>
         </div>
-          <div class="row">
-            <p>{{item.description}}</p>
-            <div>
-              <span class="badge pull-right">{{item.views}}</span>
-              <span class="badge pull-right">{{item.rating.like}}</span>
-              <span class="badge pull-right">{{item.rating.dislike}}</span>
+          <div class="col-md-7">
+            <div class="row">
+              <a class="" [routerLink]="['articles', item.id]"><h4 class="">{{item.title}}</h4></a>
+              <p>{{item.description}}</p>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <span class="badge pull-left">{{item.author}}</span>
+                <span class="badge pull-left">{{item.date}}</span>
+              </div>
+              <div class="col-md-6">
+                <span class="badge pull-right">{{item.views}}</span>
+                <span class="badge pull-right">{{item.rating.like}}</span>
+                <span class="badge pull-right">{{item.rating.dislike}}</span>
+              </div>
             </div>
           </div>
         </div>

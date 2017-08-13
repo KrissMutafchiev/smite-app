@@ -1,0 +1,6 @@
+.detail-side,.panel-primary{
+  background-color: rgba(50, 56, 62, 0.45);
+}
+.img-detail-box img{
+  max-height: 400px;
+}

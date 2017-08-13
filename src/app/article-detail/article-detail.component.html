@@ -1,24 +1,25 @@
-
-<ul class="list-article list-group ">
-  <li class="list-group-item  xxx">
-    <!--    <a class="" [href]="article.id"><h4 class="text-center">{{article.title}}</h4></a>
-    <div class="well">
-      <div class="col-md-6">
-        <img [src]="article.imageUrl" alt="article-img" width="100%" height="200">
-        <p class="well-sm">          Author:
-          <span class="badge">{{article.author}}</span>
-          <span class="badge">{{article.date}}</span>
-        </p>
-      </div>
-      <div class="row">
-        <p>{{article.description}}</p>
-        <div>
-          <span class="badge pull-right">{{article.views}}</span>
-          <span class="badge pull-right">{{article.rating.like}}</span>
-          <span class="badge pull-right">{{article.rating.dislike}}</span>
+<div class="row detail-side">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12  img-detail-box">
+        <img class="img-responsive" [src]="detailArticle.imageUrl" [alt]="detailArticle.title" >
+        <h3 class="well-sm text-center">{{detailArticle.title}}</h3>
+        <blockquote>
+            {{detailArticle.content}}
+        </blockquote>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="badge ">{{detailArticle.date}}</span>
+            <span class="badge ">{{detailArticle.author}}</span>
+          </div>
+          <div class="col-md-6">
+            <span class="badge pull-right">{{detailArticle.views}}</span>
+            <span class="badge pull-right">{{detailArticle.rating.like}}</span>
+            <span class="badge pull-right">{{detailArticle.rating.dislike}}</span>
+          </div>
         </div>
       </div>
-    </div>-->
-  </li>
+    </div>
+  </div>
 
-</ul>
+</div>
