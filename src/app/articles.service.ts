@@ -21,16 +21,27 @@ export class ArticlesService {
 
   constructor(private af: AngularFireDatabase) {}
 
-  getArticles(){
-    this.articles = this.af.list('/articles', { query: {orderByChild: 'article-1', }}).map( (arr) => { return arr.reverse() } ) as FirebaseListObservable<any[]>;
-    return this.articles;
+  getArticles(batch? , lastKey?){
+    let query =  {
+      orderByKey: true,
+      limitToFirst: batch,
+    };
+    if (lastKey) query['startAt'] = lastKey
+
+    return this.af.list('/articles', {
+        query
+        } ).map( (arr) => { return arr.reverse() } ) as FirebaseListObservable<any[]>;
+
   }
 
-
   getArticle( articID: any) {
-/*    this.article = this.af.object('/articles/' + id);
-    return  this.article.subscribe( article => {return article ;});*/
-  return this.getArticles().map( data => { return data;}).concatMap( arr => Observable.from(arr)).filter( (ArtItem: any) =>  ArtItem.id === articID  )}
+    /*    this.article = this.af.object('/articles/' + id);
+        return  this.article.subscribe( article => {return article ;});*/
+    return this.getArticles().map( data => { return data;}).concatMap( arr => Observable.from(arr)).filter( (ArtItem: any) =>  ArtItem.id === articID  )}
+
 
 
 }
+
+
+

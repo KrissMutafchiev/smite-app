@@ -83,15 +83,15 @@ export class BackgroundScenComponent implements AfterViewInit {
     for( let i = 0; i < this.stars.length; i++){
 
     }
-    this.camera.rotation.z += 0.001;
+    this.camera.rotation.y += 0.001;
   }
 
   private createStars(){
-    for (let i = 0; i < 500 ; i++) {
+    for (let i = 0; i < 8000 ; i++) {
       let rx = Math.random() * 2000 - 1000;
       let ry = Math.random() * 1000 - 500;
       let rz = Math.random() * 10000 - 5000;
-      this.stars[i] = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), new THREE.MeshNormalMaterial());
+      this.stars[i] = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 8), new THREE.MeshNormalMaterial());
 
       this.stars[i].position.x = rx;
       this.stars[i].position.y = ry;

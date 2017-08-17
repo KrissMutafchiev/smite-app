@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from './../environments/firebase.config';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 
 import { AppComponent } from './app.component';
@@ -37,7 +40,8 @@ const appRoutes: Routes = [
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    InfiniteScrollModule
 
 
   ],
@@ -45,3 +49,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+//platformBrowserDynamic().bootstrapModule(AppModule);

@@ -27,7 +27,7 @@ export class ArticleDetailComponent implements OnInit  {
      this.route.params.subscribe( (params) => {
       this.articleID = params['id'];
        this.route.params
-         .do(params => this.articleID = params['id'])
+         .do( params => this.articleID = params['id'])
          .switchMap(
            params => this._articlesService.getArticle(this.articleID)
          )

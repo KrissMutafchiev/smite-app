@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row" >
   <ul class="list-article list-group ">
-    <li *ngFor="let item of article " class="list-group-item  xxx">
+    <li *ngFor="let item of articles  | async" class="list-group-item  xxx">
       <div class="row">
         <div class="col-md-5">
-          <a class="" [routerLink]="['articles', item.id]">
-            <img class="" [src]="item.imageUrl" alt="article-img" width="100%" height="100">
+          <a class="" [routerLink]="['articles', item?.id]">
+            <img class="img-responsive" [src]="item.imageUrl" alt="article-img">
           </a>
         </div>
           <div class="col-md-7">
@@ -28,5 +28,16 @@
     </li>
   </ul>
 </div>
+
+
+<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
+
+<div *ngIf="!finished">
+  Loading more movies...
+</div>
+<div *ngIf="finished">
+  End of database... That's all folks!
+</div>
+
 
 
