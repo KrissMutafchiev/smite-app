@@ -7,6 +7,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from './../environments/firebase.config';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { NguiInfiniteListModule } from '@ngui/infinite-list';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     RouterModule.forRoot(appRoutes),
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NguiInfiniteListModule
 
 
   ],

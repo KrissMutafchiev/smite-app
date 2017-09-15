@@ -1,7 +1,8 @@
-<div class="row" >
-  <ul class="list-article list-group ">
-    <li *ngFor="let item of articles  | async" class="list-group-item  xxx">
-      <div class="row">
+<div class="row zxc left-side-list" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" [scrollWindow]="false"
+     (scrolled)="onScroll()">
+  <ul class="list-article list-group list-articles">
+    <li *ngFor="let item of articles  | async" class="list-group-item  xxx ">
+      <div class="row short-description">
         <div class="col-md-5">
           <a class="" [routerLink]="['articles', item?.id]">
             <img class="img-responsive" [src]="item.imageUrl" alt="article-img">
@@ -29,8 +30,6 @@
   </ul>
 </div>
 
-
-<div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()"></div>
 
 <div *ngIf="!finished">
   Loading more movies...

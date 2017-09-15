@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 import { ArticleListComponent } from './article-list/article-list.component';
@@ -30,14 +31,15 @@ export class ArticlesService {
 
     return this.af.list('/articles', {
         query
-        } ).map( (arr) => { return arr.reverse() } ) as FirebaseListObservable<any[]>;
+        });
 
   }
 
   getArticle( articID: any) {
     /*    this.article = this.af.object('/articles/' + id);
         return  this.article.subscribe( article => {return article ;});*/
-    return this.getArticles().map( data => { return data;}).concatMap( arr => Observable.from(arr)).filter( (ArtItem: any) =>  ArtItem.id === articID  )}
+    return this.getArticles().map( data => { return data;}).concatMap( arr => Observable.from(arr)).filter( (ArtItem: any) =>  ArtItem.id === articID  )
+  }
 
 
 

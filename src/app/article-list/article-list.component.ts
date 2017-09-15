@@ -17,14 +17,13 @@ import * as _ from 'lodash';
 })
 export class ArticleListComponent implements OnInit , OnDestroy {
 
-  private subscription: Subscription;
-  //public article;
-   batch = 2 ;      // size of each query
-   lastKey = '';      // key to offset next query from
-   finished = false ;  // boolean when end of database is reached
 
   articles = new BehaviorSubject([]);
+  subscription: Subscription;
 
+   batch = 5 ;      // size of each query
+   lastKey = '';      // key to offset next query from
+   finished = false ;  // boolean when end of database is reached
 
   constructor(
     private af: AngularFireDatabase,
@@ -48,12 +47,11 @@ export class ArticleListComponent implements OnInit , OnDestroy {
   private getArticle(key?) {
     let keyy: string;
     this.route.params.take(1).subscribe(param => keyy = param[" id "]);
-    if (this.finished) return
-    console.log('xxx');
+    if (this.finished) return;
+
     this.articlesService
       .getArticles(this.batch + 1, this.lastKey)
       .do( article => {
-      console.log(article);
       /// set the lastKey in preparation for next query
       this.lastKey = _.last(article)['$key'];
       const newArticle = _.slice(article, 0, this.batch);
@@ -63,10 +61,8 @@ export class ArticleListComponent implements OnInit , OnDestroy {
 
       /// If data is identical, stop making queries
       if (this.lastKey == _.last(newArticle)['$key']) {
-        console.log('xxxx');
         this.finished = true ;
       }
-      debugger;
       /// Concatenate new movies to current movies
       this.articles.next( _.concat(currentArticle, newArticle) )
     })
